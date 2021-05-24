@@ -3,6 +3,8 @@ import tensorflow as tf
 import os
 
 app = Flask(__name__)
+modelfile = 'model/'
+model=tf.keras.models.load_model(modelfile)
 
 
 @app.route('/api/', methods=['POST'])
@@ -12,6 +14,4 @@ def makecalc():
     return {'Result': prediction}
 
 if __name__ == '__main__':
-    modelfile = 'model/'
-    model=tf.keras.models.load_model(modelfile)
     app.run(debug=True)
