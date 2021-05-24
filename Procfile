@@ -1,1 +1,1 @@
-web: gunicorn Property_Portal.wsgi --log-file -
+web: gunicorn app:app
