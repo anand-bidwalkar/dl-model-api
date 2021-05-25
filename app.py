@@ -22,11 +22,20 @@ def makecalc():
     prediction = str(real_estate_model.predict(data)[0][0])
     return {'Result': prediction}
 
+@app.route('/bulk_aqi_prediction/', methods=['POST'])
+def make_bulk_prediction():
+    results = []
+    data = request.get_json()
+    for d in data:
+        prediction = str(aqi_model.predict([d])[0])
+        results.append(prediction)
+    return {'Results': results}
+
 @app.route('/aqi_prediction/', methods=['POST'])
 def make_prediction():
     data = request.get_json()
     prediction = str(aqi_model.predict(data)[0])
-    return {'Result': prediction}
+    return {'Results': results}
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
